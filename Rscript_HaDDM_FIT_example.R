@@ -14,8 +14,8 @@ mydata <- "et2_data_raw.RData"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 
-# load example data of a bynary food choice task
-main_folder <- file.path(pathToFolder,"method_HtSSM_aDDM")
+# load example data of a binary food choice task
+main_folder <- file.path(pathToFolder,"aDDM_method_HtSSM")
 load( file.path(main_folder, mydata))
 
 

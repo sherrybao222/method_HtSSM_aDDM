@@ -2,17 +2,15 @@ model {
 
     # Mean estimates of the linear regressions for the weights
         b1.mu ~ dunif(-5,5) # hd
-        b2.mu ~ dunif(-5,5) # td
-        
-	# precisions for the linear regression estimates
+        b2.mu ~ dunif(-5,5) # td 
+    # precisions for the linear regression estimates
         b1.pr ~ dgamma(1, 0.1)
         b2.pr ~ dgamma(1, 0.1)
         
-	# mean estimates DDM parameters
+    # mean estimates DDM parameters
         alpha.mu ~ dunif(0.001, 2) # noise
         theta.mu ~ dunif(0, 10) # non decision times
-
-	# Error terms for nDT
+    # Error terms for DDM parameters
         alpha.pr ~ dgamma(1, 0.1)
         theta.pr ~ dgamma(1, 0.1)
 
@@ -25,16 +23,16 @@ model {
 
 
     # error term for the bias
-        lambda.sG <- pow(lambda.m,2) / pow(lambda.d,2)
-        lambda.rG <- lambda.m / pow(lambda.d,2)
-        lambda.m ~ dgamma(1,0.2)T(0.001,20)
-        lambda.d ~ dgamma(1,0.5)T(0.001,20)
+      # lambda.sG <- pow(lambda.m,2) / pow(lambda.d,2)
+      # lambda.rG <- lambda.m / pow(lambda.d,2)
+      # lambda.m ~ dgamma(1,0.2)T(0.001,20)
+      # lambda.d ~ dgamma(1,0.5)T(0.001,20)
 
     # error term for nDT
-        chi.sG <- pow(chi.m,2) / pow(chi.d,2)
-        chi.rG <- chi.m / pow(chi.d,2)
-        chi.m ~ dgamma(1,0.2)T(0.001,20)
-        chi.d ~ dgamma(1,0.5)T(0.001,20)
+      # chi.sG <- pow(chi.m,2) / pow(chi.d,2)
+      # chi.rG <- chi.m / pow(chi.d,2)
+      # chi.m ~ dgamma(1,0.2)T(0.001,20)
+      # chi.d ~ dgamma(1,0.5)T(0.001,20)
 
     # Bias of the DDM
         bias.alpha <- bias.mu * bias.kappa
@@ -57,8 +55,8 @@ model {
         alpha.p[p] ~ dnorm(alpha.mu, alpha.pr)
         theta.p[p] ~ dnorm(theta.mu, theta.pr)
         e.p.tau[p] ~ dgamma(e.sG, e.rG)T(0.001,20)
-        chi.p.tau[p] ~ dgamma(chi.sG, chi.rG)T(0.001,20)
-        lambda.p.tau[p] ~ dgamma(lambda.sG, lambda.rG)T(0.001,20)
+      # chi.p.tau[p] ~ dgamma(chi.sG, chi.rG)T(0.001,20)
+      # lambda.p.tau[p] ~ dgamma(lambda.sG, lambda.rG)T(0.001,20)
         bias[p] ~ dbeta(bias.alpha, bias.beta)T(0.01,0.99)
     }
 
